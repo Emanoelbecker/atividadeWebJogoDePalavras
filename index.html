@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f7f8f2">
+  <meta name="description" content="Descubra a palavra do dia em até seis tentativas. Um desafio diário de palavras por tema.">
+  <title>Palavre — desafio diário</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <a class="brand" href="#" id="brand-home" aria-label="Palavre, página inicial"><span class="brand-mark">P</span> palavre<span class="brand-dot">.</span></a>
+      <nav class="top-actions" aria-label="Navegação principal">
+        <button class="icon-button" id="stats-open" aria-label="Ver estatísticas" title="Estatísticas">▥</button>
+        <button class="icon-button" id="help-open" aria-label="Como jogar" title="Como jogar">?</button>
+      </nav>
+    </header>
+
+    <main>
+      <section id="home-view" class="view home-view">
+        <div class="eyebrow"><span class="live-dot"></span> SEU DESAFIO DE HOJE</div>
+        <h1>Uma palavra.<br><span>Seis chances.</span></h1>
+        <p class="intro">Descubra a palavra secreta do dia. Cada tentativa aproxima você da resposta.</p>
+        <div class="daily-card">
+          <div class="daily-icon" aria-hidden="true">✳</div>
+          <div><p class="card-label">TEMA DE HOJE</p><h2 id="home-category">Animais</h2><p class="muted">Palavra com 5 letras · 6 tentativas</p></div>
+          <span class="card-arrow" aria-hidden="true">↗</span>
+        </div>
+        <button id="start-button" class="primary-button">Jogar agora <span aria-hidden="true">→</span></button>
+        <p class="tiny-note">Sem cadastro. Seu progresso fica neste dispositivo.</p>
+        <div class="home-stats" id="home-stats">
+          <div><strong id="home-streak">0</strong><span>dias seguidos</span></div>
+          <div><strong id="home-wins">0%</strong><span>de acertos</span></div>
+          <div><strong id="home-played">0</strong><span>partidas</span></div>
+        </div>
+      </section>
+
+      <section id="game-view" class="view game-view hidden" aria-labelledby="game-title">
+        <div class="game-heading">
+          <button class="back-button" id="back-home">← Início</button>
+          <div class="game-day">DESAFIO DIÁRIO <span id="today-date"></span></div>
+        </div>
+        <div class="game-title-row"><div><p class="card-label">TEMA DE HOJE</p><h1 id="game-title">Animais</h1></div><div class="letter-count"><strong>5</strong><span>LETRAS</span></div></div>
+        <p class="game-hint">Digite uma palavra de 5 letras e descubra a resposta.</p>
+        <div id="board" class="board" role="grid" aria-label="Tabuleiro de tentativas"></div>
+        <p id="status-message" class="status-message" role="status" aria-live="polite">Sua primeira tentativa começa agora.</p>
+        <div id="keyboard" class="keyboard" aria-label="Teclado virtual"></div>
+        <div class="game-footer"><span><span class="live-dot"></span> Uma palavra por dia</span><button id="game-help" class="text-button">Como jogar?</button></div>
+      </section>
+
+      <section id="result-view" class="view result-view hidden" aria-labelledby="result-title">
+        <div class="result-symbol" id="result-symbol">✦</div>
+        <p class="eyebrow">DESAFIO CONCLUÍDO</p>
+        <h1 id="result-title">Muito bem!</h1>
+        <p id="result-description" class="intro"></p>
+        <div class="answer-card"><span>A PALAVRA ERA</span><strong id="answer-word">TIGRE</strong><small id="answer-category">Animais</small></div>
+        <div class="result-stats"><div><strong id="result-attempts">4/6</strong><span>Tentativas</span></div><div><strong id="result-streak">1</strong><span>Dias seguidos</span></div><div><strong id="result-winrate">100%</strong><span>Taxa de acerto</span></div></div>
+        <button id="share-button" class="primary-button">Compartilhar resultado <span aria-hidden="true">↗</span></button>
+        <button id="result-home" class="secondary-button">Voltar ao início</button>
+        <p class="tiny-note" id="share-feedback" role="status"></p>
+      </section>
+    </main>
+
+    <footer class="site-footer"><span>palavre<span class="brand-dot">.</span></span><span>Um pequeno desafio, todos os dias.</span></footer>
+  </div>
+
+  <dialog id="help-dialog" class="modal">
+    <form method="dialog"><button class="modal-close" aria-label="Fechar">×</button></form>
+    <p class="eyebrow">COMO JOGAR</p><h2>Descubra a palavra.</h2>
+    <p>Você tem até seis tentativas para encontrar a palavra de cinco letras do tema diário.</p>
+    <div class="example-row"><span class="tile correct">P</span><span class="example-copy"><strong>Verde</strong><br>A letra está no lugar certo.</span></div>
+    <div class="example-row"><span class="tile present">A</span><span class="example-copy"><strong>Amarelo</strong><br>A letra existe, mas em outro lugar.</span></div>
+    <div class="example-row"><span class="tile absent">Z</span><span class="example-copy"><strong>Cinza</strong><br>A letra não aparece na palavra.</span></div>
+    <p class="modal-footnote">A palavra do dia é a mesma para todos. Seu histórico fica salvo apenas neste navegador.</p>
+    <form method="dialog"><button class="primary-button">Entendi</button></form>
+  </dialog>
+
+  <dialog id="stats-dialog" class="modal stats-modal">
+    <form method="dialog"><button class="modal-close" aria-label="Fechar">×</button></form>
+    <p class="eyebrow">SEU PROGRESSO</p><h2>Estatísticas</h2>
+    <div class="stats-grid">
+      <div><strong id="stat-played">0</strong><span>Partidas</span></div><div><strong id="stat-wins">0</strong><span>Vitórias</span></div>
+      <div><strong id="stat-rate">0%</strong><span>Acertos</span></div><div><strong id="stat-streak">0</strong><span>Sequência atual</span></div>
+      <div><strong id="stat-best">0</strong><span>Melhor sequência</span></div><div><strong id="stat-last">—</strong><span>Última palavra</span></div>
+    </div>
+    <form method="dialog"><button class="primary-button">Continuar</button></form>
+  </dialog>
+  <script src="app.js"></script>
+</body>
+</html>
