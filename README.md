@@ -9,6 +9,9 @@ Jogo web responsivo de adivinhação de palavras em português, criado para o MV
    - Acesse `http://localhost:8000`.
 3. Não há dependências para instalar nem cadastro.
 
+## Testes
+Com Node.js instalado, execute `node --test tests\app.test.js`.
+
 ## Funcionalidades
 - Palavra do dia determinada pela data local e categoria temática.
 - Tabuleiro de até seis tentativas, com teclado físico e virtual.
